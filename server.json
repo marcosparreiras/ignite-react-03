@@ -1,0 +1,28 @@
+{
+  "transactions": [
+    {
+      "id": 1,
+      "description": "desenvolvimento de site",
+      "type": "income",
+      "category": "venda",
+      "price": 14000,
+      "createdAt": "2024-08-14t01:29:54.111z"
+    },
+    {
+      "id": 2,
+      "description": "Lanche",
+      "type": "outcome",
+      "category": "alimentação",
+      "price": 35,
+      "createdAt": "2024-08-12t01:29:54.111z"
+    },
+    {
+      "id": 3,
+      "description": "desenvolvimento de api",
+      "type": "income",
+      "category": "venda",
+      "price": 4500,
+      "createdAt": "2024-08-08t01:29:54.111z"
+    }
+  ]
+}
