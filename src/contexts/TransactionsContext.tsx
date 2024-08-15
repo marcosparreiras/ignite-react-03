@@ -45,7 +45,10 @@ export function TransactionsProvider(props: PropsWithChildren) {
 
   return (
     <TransactionsContext.Provider
-      value={{ createTransaction, transactions: state.transactions }}
+      value={{
+        createTransaction,
+        transactions: state.transactions,
+      }}
     >
       {props.children}
     </TransactionsContext.Provider>

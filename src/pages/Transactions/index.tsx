@@ -7,6 +7,7 @@ import {
   TransactionsTable,
 } from "./styles";
 import { useTransactionsContext } from "../../contexts/TransactionsContext";
+import { priceFormatter } from "../../utils/formatter";
 
 export function Transactions() {
   const { transactions } = useTransactionsContext();
@@ -25,7 +26,8 @@ export function Transactions() {
                   <td width="40%">{transaction.description}</td>
                   <td>
                     <PriceHighLight variant={transaction.type}>
-                      R$ ${transaction.price}
+                      {transaction.type === "outcome" && "- "}
+                      {priceFormatter.format(transaction.price)}
                     </PriceHighLight>
                   </td>
                   <td>{transaction.category}</td>
