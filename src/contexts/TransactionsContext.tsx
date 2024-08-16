@@ -12,6 +12,7 @@ import {
 
 interface TransactionsContextType {
   transactions: Transaction[];
+  fetchTransactions: (query?: string) => Promise<void>;
   createTransaction: (data: Omit<Transaction, "id" | "createdAt">) => void;
 }
 
@@ -22,8 +23,12 @@ export function TransactionsProvider(props: PropsWithChildren) {
     transactions: [],
   });
 
-  async function loadTransactions(): Promise<void> {
-    const result = await fetch("http://localhost:3000/transactions");
+  async function fetchTransactions(query?: string): Promise<void> {
+    const url = new URL("http://localhost:3000/transactions");
+    if (query) {
+      url.searchParams.set("q", query);
+    }
+    const result = await fetch(url);
     const data = await result.json();
     dispatch({ type: "LOAD_TRANSACTIONS", payload: data });
   }
@@ -40,13 +45,14 @@ export function TransactionsProvider(props: PropsWithChildren) {
   }
 
   useEffect(() => {
-    loadTransactions();
+    fetchTransactions();
   }, []);
 
   return (
     <TransactionsContext.Provider
       value={{
         createTransaction,
+        fetchTransactions,
         transactions: state.transactions,
       }}
     >
