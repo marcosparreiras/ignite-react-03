@@ -23,6 +23,30 @@
       "category": "venda",
       "price": 4500,
       "createdAt": "2024-08-08t01:29:54.111z"
+    },
+    {
+      "description": "test",
+      "price": 10,
+      "category": "test",
+      "type": "income",
+      "id": 1723768175947,
+      "createdAt": "Thu Aug 15 2024 21:29:35 GMT-0300 (Horário Padrão de Brasília)"
+    },
+    {
+      "description": "das",
+      "price": 23,
+      "category": "dsad",
+      "type": "income",
+      "id": 1723768304140,
+      "createdAt": "Thu Aug 15 2024 21:31:44 GMT-0300 (Horário Padrão de Brasília)"
+    },
+    {
+      "description": "ola",
+      "price": 12,
+      "category": "ola",
+      "type": "income",
+      "id": 1723768390405,
+      "createdAt": "Thu Aug 15 2024 21:33:10 GMT-0300 (Horário Padrão de Brasília)"
     }
   ]
 }

@@ -22,15 +22,16 @@ const newTransactionFormSchama = z.object({
 type NewTransactionFormInputs = z.infer<typeof newTransactionFormSchama>;
 
 export function NewTransactionModal() {
-  const { register, handleSubmit, formState, control } =
+  const { reset, register, handleSubmit, formState, control } =
     useForm<NewTransactionFormInputs>({
       resolver: zodResolver(newTransactionFormSchama),
     });
 
   const { createTransaction } = useTransactionsContext();
 
-  function handleCreateNewTransaction(data: NewTransactionFormInputs) {
-    createTransaction(data);
+  async function handleCreateNewTransaction(data: NewTransactionFormInputs) {
+    await createTransaction(data);
+    reset();
   }
 
   return (
