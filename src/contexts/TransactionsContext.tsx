@@ -26,47 +26,51 @@ export function TransactionsProvider(props: PropsWithChildren) {
     transactions: [],
   });
 
-  async function fetchTransactions(query?: string): Promise<void> {
-    const url = new URL("http://localhost:3000/transactions");
-    if (query) {
-      url.searchParams.set("q", query);
-    }
-    url.searchParams.set("_sort", "createdAt");
-    url.searchParams.set("_order", "desc");
-    const result = await fetch(url);
-    const data = await result.json();
-    dispatch({ type: "LOAD_TRANSACTIONS", payload: data });
-  }
+  const fetchTransactions = useCallback(
+    async (query?: string): Promise<void> => {
+      const url = new URL("http://localhost:3000/transactions");
+      if (query) {
+        url.searchParams.set("q", query);
+      }
+      url.searchParams.set("_sort", "createdAt");
+      url.searchParams.set("_order", "desc");
+      const result = await fetch(url);
+      const data = await result.json();
+      dispatch({ type: "LOAD_TRANSACTIONS", payload: data });
+    },
+    []
+  );
 
-  async function createTransaction(
-    data: Omit<Transaction, "id" | "createdAt">
-  ): Promise<void> {
-    const transaction: Transaction = {
-      ...data,
-      id: new Date().getTime(),
-      createdAt: new Date().toString(),
-    };
+  const createTransaction = useCallback(
+    async (data: Omit<Transaction, "id" | "createdAt">): Promise<void> => {
+      const transaction: Transaction = {
+        ...data,
+        id: new Date().getTime(),
+        createdAt: new Date().toString(),
+      };
 
-    dispatch({ type: "ADD_TRANSACTION", payload: transaction });
+      dispatch({ type: "ADD_TRANSACTION", payload: transaction });
 
-    await fetch("http://localhost:3000/transactions", {
-      method: "POST",
-      body: JSON.stringify(transaction),
-      headers: {
-        "Content-Type": "Application/json",
-      },
-    });
-  }
+      await fetch("http://localhost:3000/transactions", {
+        method: "POST",
+        body: JSON.stringify(transaction),
+        headers: {
+          "Content-Type": "Application/json",
+        },
+      });
+    },
+    []
+  );
 
   useEffect(() => {
     fetchTransactions();
-  }, []);
+  }, [fetchTransactions]);
 
   return (
     <TransactionsContext.Provider
       value={{
-        createTransaction: useCallback(createTransaction, []),
-        fetchTransactions: useCallback(fetchTransactions, []),
+        createTransaction,
+        fetchTransactions,
         transactions: state.transactions,
       }}
     >
