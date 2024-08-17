@@ -47,6 +47,14 @@
       "type": "income",
       "id": 1723768390405,
       "createdAt": "Thu Aug 15 2024 21:33:10 GMT-0300 (Horário Padrão de Brasília)"
+    },
+    {
+      "description": "dasdasd",
+      "price": 231,
+      "category": "dasdas",
+      "type": "income",
+      "id": 1723860095541,
+      "createdAt": "Fri Aug 16 2024 23:01:35 GMT-0300 (Horário Padrão de Brasília)"
     }
   ]
 }

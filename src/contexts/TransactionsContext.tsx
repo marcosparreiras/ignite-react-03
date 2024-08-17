@@ -1,4 +1,5 @@
 import {
+  useCallback,
   createContext,
   useContext,
   useEffect,
@@ -64,8 +65,8 @@ export function TransactionsProvider(props: PropsWithChildren) {
   return (
     <TransactionsContext.Provider
       value={{
-        createTransaction,
-        fetchTransactions,
+        createTransaction: useCallback(createTransaction, []),
+        fetchTransactions: useCallback(fetchTransactions, []),
         transactions: state.transactions,
       }}
     >
